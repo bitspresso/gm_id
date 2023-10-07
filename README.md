@@ -21,6 +21,9 @@ In an era where digital presence reigns supreme, GM ID is your passport to maste
 
 ### Architecture
 
+![Drag Racing](flow.png)
+
+
 ### Current state
 
 ### Future developments
