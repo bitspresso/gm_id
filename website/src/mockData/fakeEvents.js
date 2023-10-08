@@ -1,7 +1,7 @@
 export const fakeEvents = [
   {
-    name: "Hackaton",
-    domain: "www.template.com",
+    name: "ETH Rome",
+    domain: "www.ethrome.com",
     traits: ["https://", "https://"],
   },
 ];

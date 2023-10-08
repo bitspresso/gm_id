@@ -4,32 +4,47 @@ import { beautifyWallet } from "../../../../common/commonFunctions";
 import { metamaskContext } from "../../../../contexts/metamaskContext";
 import { useContext, useState } from "react";
 import TraitsTable from "../../../../components/common/traitsTable";
-import { fakeEvents } from "../../../../mockData/fakeEvents";
+import { fakeChallenge } from "../../../../mockData/fakeChallenge";
 import User from "../../../../components/common/user";
+import { abis, addresses } from "../../../../common/contracts";
 
-function EventInfo({ name, domain, description, partecipants, tags }) {
+function EventInfo({ data }) {
+  console.log(data);
+  const { metamaskAccounts } = useContext(metamaskContext);
+
+  function register() {
+    /*const contract = new web3.eth.Contract(abis.register, addresses.register);
+    const data = "0x1234567890";
+    contract.methods
+      .propagate(data)
+      .send({
+        from: metamaskAccounts[0],
+      })
+      .then((res) => console.log(res));
+      */
+  }
   return (
-    <div className="flex flex-col gap-4 items-center justify-center text-3xl font-bold w-[350px] h-[550px] bg-[#d3e298] text-black text-center overflow-auto">
+    <div className="flex flex-col gap-4 items-center justify-center text-3xl font-bold w-full h-full text-white text-center ">
       <div>
         <h2 className="break-all">
-          Current event: {name} @ {domain}
+          Current event:
+          <br /> {data.name} @ {data.domain}
         </h2>
       </div>
       <p>An active challenge was found</p>
-      <p>{description}</p>
-      <div className="flex justify-center flex-wrap justify-start gap-4 bg-black p-2 max-h-40 overflow-auto">
-        {partecipants?.map((el, i) => (
+      <p>{data.description}</p>
+      <div className="grid grid-cols-4 justify-center flex-wrap justify-start gap-4 bg-black p-2">
+        {data.partecipants?.map((el, i) => (
           <User key={`user_${i}`} data={el} />
         ))}
       </div>
       <div>
         <p>Tags matched:</p>
-        <p>[{tags?.map((el, i) => `${i !== 0 ? ", " : ""}${el}`)}]</p>
+        <p>[{data.tags?.map((el, i) => `${i !== 0 ? ", " : ""}${el}`)}]</p>
       </div>
       <div className="flex flex-col gap-3">
-        <p>Confirm?</p>
         <div className="flex justify-evenly">
-          <button onClick={() => {}}>
+          <button onClick={register}>
             <p>Proceed</p>
           </button>
         </div>
@@ -43,7 +58,7 @@ function ChoseTraits({ name, setChosenTraits }) {
   return (
     <div className="flex flex-col items-center gap-4">
       <h2>Gm {beautifyWallet(metamaskAccounts[0])}</h2>
-      <p>{name} matches</p>
+      <p>{name} matches the following traits:</p>
       <TraitsTable />
       <button onClick={() => setChosenTraits({ hello: "world" })}>
         <p>Confirm</p>
@@ -57,11 +72,10 @@ export default function Event() {
   return (
     <div className="flex flex-col items-center justify-center">
       {JSON.stringify(chosenTraits) !== "{}" ? (
-        <EventInfo />
+        <EventInfo data={fakeChallenge} />
       ) : (
         <ChoseTraits
-          name={fakeEvents[0].name}
-          traits={fakeEvents[0].traits}
+          name={fakeChallenge.name}
           setChosenTraits={setChosenTraits}
         />
       )}
