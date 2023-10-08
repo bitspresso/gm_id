@@ -43,7 +43,7 @@ all the contract are deployed on BASE network.
 |Events:| https://api.studio.thegraph.com/query/54934/gm-id-events/version/latest
 
 ### Future developments
-- ENS for subdomains
+<br>- ENS for subdomains
 <br>- subdao management
 <br>- enhanced communication 
 <br>- expansion to different blockchains
