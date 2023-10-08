@@ -1,0 +1,24 @@
+specVersion: 0.0.5
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Contract
+    network: base-testnet
+    source:
+      address: "0x438bcf0C1B6987F5D0a19fba72eb23F8cFF45C13"
+      abi: Contract
+      startBlock: 10775839
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - EventRegistered
+      abis:
+        - name: Contract
+          file: Contract/abis/Contract.json
+      eventHandlers:
+        - event: EventRegistered(string,string,string,string)
+          handler: handleEventRegistered
+      file: Contract/Contract.wasm
