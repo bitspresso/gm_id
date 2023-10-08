@@ -1,0 +1,17 @@
+type Dropped @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  forEvent: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Registered @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  forEvent: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
