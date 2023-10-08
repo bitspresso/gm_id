@@ -206,6 +206,10 @@ contract SqueezedPass {
 
             EventPass(passAddress).burn(pass.passId);
             _mint(msg.sender);
+
+            unchecked {
+                ++i;
+            }
         }
     }
 
@@ -222,6 +226,7 @@ contract Pass {} /// @dev base pass
 
 contract EventPass {
     address[] private traits_;
+    uint256 private lastId = 0;
 
     constructor(address[] memory traits) {
         traits_ = traits;
@@ -242,7 +247,7 @@ contract EventPass {
         }
     }
 
-    function setupWithAdditionalChecks(address account, Review[] calldata required) external {
+    /** function setupWithAdditionalChecks(address account, Review[] calldata required) external { @dev not for deployment
         setup(account);
 
         uint256 length = required.length;
@@ -254,7 +259,7 @@ contract EventPass {
                     ++i;
                 }
             }
-    }
+    } */
 
     function existsFor(address account) external view returns(bool) {
         return exists[account];
@@ -264,7 +269,11 @@ contract EventPass {
         return activeId[account];
     }
 
-    function burn(uint256 passId) external {
+    function mint(address to) public {
+        activeId[to] = lastId + 1;
+    }
 
+    function burn(uint256 passId) external {
+        activeId[address(0)] = passId;
     }
 }
