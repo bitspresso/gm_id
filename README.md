@@ -44,7 +44,7 @@ FilterExecutor: 0xE4B4A10aD4C8bAc033896b5Bd0Bd3A9F93473017
 
 EntryPoint: 0xf666c55ffeCBE5e91fd9c995B20Fea4b9cE2778C
 
-EventRegistry: 0x438bcf0C1B6987F5D0a19fba72eb23F8cFF45C13
+EventRegistry: 0x56A851dbb01fA4F23fa3dF1969eE32c950c62fAc
 
 Users (registered, dropped): https://api.studio.thegraph.com/query/54934/gm-id/version/latest
 
