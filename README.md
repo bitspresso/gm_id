@@ -29,26 +29,18 @@ In an era where digital presence reigns supreme, GM ID is your passport to maste
 we deployed new subgraphs & used one from ENS, which we use to fetch data about participants, using their ENS names.
 all the contract are deployed on BASE network.
 
-
-Trait: 0xD44cB6Caa186a7d39E91A4420c3D33F44F1cEE91
-
-EventPass: 0xc1afCC5d9b882A9fBd440E04C1D2AD7940f4ff34
-
-IdentController: 0xa6a508c3F1EA90FC2862649f581235693E95FeeB
-
-CriteriaFilter: 0x3B7a17bC524cBCa67F44AE2d1B9C848C575aedC5
-
-Event: 0xcE27625020d2DDC231C3Bc35f2D0C8612090FdD0
-
-FilterExecutor: 0xE4B4A10aD4C8bAc033896b5Bd0Bd3A9F93473017
-
-EntryPoint: 0xf666c55ffeCBE5e91fd9c995B20Fea4b9cE2778C
-
-EventRegistry: 0x56A851dbb01fA4F23fa3dF1969eE32c950c62fAc
-
-Users (registered, dropped): https://api.studio.thegraph.com/query/54934/gm-id/version/latest
-
-Events: https://api.studio.thegraph.com/query/54934/gm-id-events/version/latest
+|   |   |   
+|---|---|     
+|Trait:| 0xD44cB6Caa186a7d39E91A4420c3D33F44F1cEE91|
+|EventPass:| 0xc1afCC5d9b882A9fBd440E04C1D2AD7940f4ff34
+|IdentController:| 0xa6a508c3F1EA90FC2862649f581235693E95FeeB
+|CriteriaFilter:| 0x3B7a17bC524cBCa67F44AE2d1B9C848C575aedC5
+|Event:| 0xcE27625020d2DDC231C3Bc35f2D0C8612090FdD0
+|FilterExecutor:| 0xE4B4A10aD4C8bAc033896b5Bd0Bd3A9F93473017
+|EntryPoint:| 0xf666c55ffeCBE5e91fd9c995B20Fea4b9cE2778C
+|EventRegistry:| 0x438bcf0C1B6987F5D0a19fba72eb23F8cFF45C13
+|Users (registered, dropped):| https://api.studio.thegraph.com/query/54934/gm-id/version/latest
+|Events:| https://api.studio.thegraph.com/query/54934/gm-id-events/version/latest
 
 ### Future developments
 ENS for subdomains
