@@ -1,0 +1,8 @@
+{
+  "base-testnet": {
+    "EntryPoint": {
+      "address": "0x3E0367E7c7456eB5902802568edE91C140312088",
+      "startBlock": 10774041
+    }
+  }
+}
