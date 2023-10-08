@@ -6,7 +6,7 @@ dataSources:
     name: Contract
     network: base-testnet
     source:
-      address: "0x438bcf0C1B6987F5D0a19fba72eb23F8cFF45C13"
+      address: "0x56A851dbb01fA4F23fa3dF1969eE32c950c62fAc"
       abi: Contract
       startBlock: 10775839
     mapping:
