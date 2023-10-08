@@ -26,34 +26,37 @@ contract EventRegistry {
     }
 }
 
+contract Filter {} /// @dev base interface
+
 contract CriteriaFilter {
     address immutable event_;
-    address immutable controller_;
+    address immutable pass_;
 
-    constructor(address _event, address _controller) {
+    constructor(address _event, address pass) {
         event_ = _event;
-        controller_ = _controller;
+        pass_ = pass;
     }
 
-    function isValid(address account, address pass) external returns (bool) {
-        return EventPass(pass).existsFor(account);
+    function isValid(address account) external returns (bool) {
+        return EventPass(pass_).existsFor(account);
     }
 }
 
 contract FiltersExecutor {
     address immutable controller_;
+    address immutable registry_;
 
-    constructor(address controller) {
+    constructor(address controller, address registry_) {
 
     }
 
     function execute(address event_) external {
-        address[] memory filters = registry.filtersOf(event_);
+        address[] memory filters = EventRegistry(registry_).filtersOf(event_);
         uint256 length = filters.length;
         bool shouldIssue = true;
 
         for(uint i = 0; i < length;) {
-            if(CriteriaFilter(filters[i]).isValid(sender)) {
+            if(CriteriaFilter(filters[i]).isValid(msg.sender)) {
                 shouldIssue = false;
             }
 
@@ -66,7 +69,9 @@ contract FiltersExecutor {
     }
 
     function _issue(address event_) internal {
-        IdentController(controller_).process(account, pass_);
+        address[] memory pass = EventRegistry(registry_).passesOf(event_, true);
+
+        IdentController(controller_).process(msg.sender, pass[0]);
     }
 }
 
