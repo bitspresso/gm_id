@@ -1,6 +1,6 @@
 import { newMockEvent } from "matchstick-as"
 import { ethereum } from "@graphprotocol/graph-ts"
-import { EventRegistered } from "../generated/EventRegistry/EventRegistry"
+import { EventRegistered } from "../generated/Contract/Contract"
 
 export function createEventRegisteredEvent(
   name: string,

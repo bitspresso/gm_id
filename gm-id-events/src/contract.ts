@@ -1,4 +1,4 @@
-import { EventRegistered as EventRegisteredEvent } from "../generated/EventRegistry/EventRegistry"
+import { EventRegistered as EventRegisteredEvent } from "../generated/Contract/Contract"
 import { EventRegistered } from "../generated/schema"
 
 export function handleEventRegistered(event: EventRegisteredEvent): void {

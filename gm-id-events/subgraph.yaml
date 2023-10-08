@@ -3,12 +3,12 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: EventRegistry
+    name: Contract
     network: base-testnet
     source:
-      address: "0xc3515eb7B64be068652E0e88Df0c4723BD4fd394"
-      abi: EventRegistry
-      startBlock: 10775410
+      address: "0x438bcf0C1B6987F5D0a19fba72eb23F8cFF45C13"
+      abi: Contract
+      startBlock: 10775839
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -16,9 +16,9 @@ dataSources:
       entities:
         - EventRegistered
       abis:
-        - name: EventRegistry
-          file: ./abis/EventRegistry.json
+        - name: Contract
+          file: ./abis/Contract.json
       eventHandlers:
-        - event: EventRegistered(string,string,indexed string,indexed string)
+        - event: EventRegistered(string,string,string,string)
           handler: handleEventRegistered
-      file: ./src/event-registry.ts
+      file: ./src/contract.ts

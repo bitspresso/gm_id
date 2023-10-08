@@ -1,8 +1,8 @@
 {
   "base-testnet": {
-    "EventRegistry": {
-      "address": "0xc3515eb7B64be068652E0e88Df0c4723BD4fd394",
-      "startBlock": 10775410
+    "Contract": {
+      "address": "0x438bcf0C1B6987F5D0a19fba72eb23F8cFF45C13",
+      "startBlock": 10775839
     }
   }
 }
