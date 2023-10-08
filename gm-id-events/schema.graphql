@@ -1,0 +1,10 @@
+type EventRegistered @entity(immutable: true) {
+  id: Bytes!
+  name: String! # string
+  description: String! # string
+  tags: String! # string
+  domain: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

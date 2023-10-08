@@ -1,0 +1,24 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: EventRegistry
+    network: base-testnet
+    source:
+      address: "0xc3515eb7B64be068652E0e88Df0c4723BD4fd394"
+      abi: EventRegistry
+      startBlock: 10775410
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - EventRegistered
+      abis:
+        - name: EventRegistry
+          file: ./abis/EventRegistry.json
+      eventHandlers:
+        - event: EventRegistered(string,string,indexed string,indexed string)
+          handler: handleEventRegistered
+      file: ./src/event-registry.ts

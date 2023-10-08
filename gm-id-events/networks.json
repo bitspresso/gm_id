@@ -1,0 +1,8 @@
+{
+  "base-testnet": {
+    "EventRegistry": {
+      "address": "0xc3515eb7B64be068652E0e88Df0c4723BD4fd394",
+      "startBlock": 10775410
+    }
+  }
+}
