@@ -1,12 +1,43 @@
 pragma solidity ^0.8.19;
 
+contract EntryPoint {
+    address immutable registry_;
+    address immutable executor_;
+
+    modifier hasPass(address sender, address event_) {
+        _;
+    }
+
+    constructor(address registry, address executor) {
+        registry_ = registry;
+        executor_ = executor;
+    }
+
+    function registerFor(address event_) public {
+        address pass = EventRegistry(registry_).passesOf(event_, true)[0];
+        address[] memory filters = EventRegistry(registry_).filtersOf(event_);
+
+        FiltersExecutor(executor_).execute(event_);
+    }
+
+    function drop(address event_) public hasPass(msg.sender, event_) {
+        address pass = EventRegistry(registry_).passesOf(event_, true)[0];
+        uint256 activeId = EventPass(pass).getActive(msg.sender);
+
+        EventPass(pass).burn(activeId);
+    }
+}
+
 contract EventRegistry {
+    mapping(address => Filter[]) filters;
+    mapping(address => EventPass[]) passes;
+
     constructor() {
 
     }
 
-    function register() public {
-
+    function register(string memory name, string memory description) public returns (address) {
+        return address(new Event(name, description));
     }
 
     function prepare() public {
@@ -17,12 +48,26 @@ contract EventRegistry {
 
     }
 
+    function setFilters() public {
+
+    }
+
     function filtersOf(address event_) external returns (address[] memory) {
 
     }
 
     function passesOf(address event_, bool active) external returns (address[] memory) {
 
+    }
+}
+
+contract Event {
+    string name_;
+    string description_;
+
+    constructor(string memory name, string memory description) {
+        name_ = name;
+        description_ = description;
     }
 }
 
@@ -37,7 +82,7 @@ contract CriteriaFilter {
         pass_ = pass;
     }
 
-    function isValid(address account) external returns (bool) {
+    function isValid(address account) external view returns (bool) {
         return EventPass(pass_).existsFor(account);
     }
 }
@@ -144,6 +189,7 @@ contract EventPass {
     }
 
     mapping(address => bool) exists;
+    mapping(address => uint256) activeId;
 
     function setup(address account) public {
         uint256 length = traits_.length;
@@ -173,6 +219,10 @@ contract EventPass {
 
     function existsFor(address account) external view returns(bool) {
         return exists[account];
+    }
+
+    function getActive(address account) external view returns(uint256) {
+        return activeId[account];
     }
 
     function burn(uint256 passId) external {
