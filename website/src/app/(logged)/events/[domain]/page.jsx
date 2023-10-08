@@ -41,7 +41,7 @@ function EventInfo({ name, domain, description, partecipants, tags }) {
 function ChoseTraits({ name, setChosenTraits }) {
   const { metamaskAccounts } = useContext(metamaskContext);
   return (
-    <div>
+    <div className="flex flex-col items-center gap-4">
       <h2>Gm {beautifyWallet(metamaskAccounts[0])}</h2>
       <p>{name} matches</p>
       <TraitsTable />
