@@ -46,8 +46,9 @@ contract FiltersExecutor {
     address immutable controller_;
     address immutable registry_;
 
-    constructor(address controller, address registry_) {
-
+    constructor(address controller, address registry) {
+        controller_ = controller;
+        registry_ = registry;
     }
 
     function execute(address event_) external {
@@ -95,7 +96,9 @@ contract IdentController {
     }
 }
 
-contract Storage {} /// @dev base storage ops on passes
+contract Storage { /// @dev base storage ops on passes
+    function extract(address forAddress, string calldata datatype) external returns (bytes memory) {} 
+}
 
 contract SqueezedPass {
     struct UniquePass {
@@ -130,6 +133,8 @@ contract SqueezedPass {
 
     }
 }
+
+contract Pass {} /// @dev base pass
 
 contract EventPass {
     address[] private traits_;
@@ -166,7 +171,11 @@ contract EventPass {
             }
     }
 
-    function existsFor(address account) external returns(bool) {
+    function existsFor(address account) external view returns(bool) {
         return exists[account];
+    }
+
+    function burn(uint256 passId) external {
+
     }
 }
