@@ -1,0 +1,26 @@
+{
+  "short_name": "GM ID",
+  "name": "GM ID",
+  "description": "Community-driven, event-focused identity",
+  "manifest_version": 3,
+  "version": "0.1.0",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "open",
+    "default_icon": {
+      "192": "logo192.png"
+    }
+  },
+  "permissions": [
+    "scripting",
+    "tabs",
+    "activeTab",
+    "storage",
+    "contextMenus",
+    "notifications",
+    "webNavigation"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
