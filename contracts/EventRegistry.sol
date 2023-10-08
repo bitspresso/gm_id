@@ -75,14 +75,16 @@ contract FiltersExecutor {
     }
 }
 
+contract Opinion {} /// @dev base interface for traits and reviews
+
 contract Trait {
-    struct Event {
-        address account;
+    function linkTo(address account) external {
+
     }
+}
 
-    mapping(address => Event[]) permits;
-
-    function associate(address account) external {
+contract Review {
+    function associateWith(address account) public {
 
     }
 }
@@ -93,8 +95,44 @@ contract IdentController {
     }
 }
 
+contract Storage {} /// @dev base storage ops on passes
+
+contract SqueezedPass {
+    struct UniquePass {
+        address location;
+        uint256 passId;
+    }
+
+    modifier owner(address account) {
+        _;
+    }
+
+    function squeezFrom(UniquePass[] calldata passes) public owner(msg.sender) returns (uint256) {
+        uint256 length = passes.length;
+
+        for(uint i = 0; i < length;) {
+            UniquePass memory pass = passes[i];
+            address passAddress = pass.location;
+            bytes memory data = Storage(passAddress).extract(msg.sender, "traits"); /// @dev wip
+
+            _deserialize(data);
+
+            EventPass(passAddress).burn(pass.passId);
+            _mint(msg.sender);
+        }
+    }
+
+    function _deserialize(bytes memory data) internal returns (Opinion[] memory) {
+
+    }
+
+    function _mint(address to) internal returns (uint256) {
+
+    }
+}
+
 contract EventPass {
-    address[] immutable traits_;
+    address[] private traits_;
 
     constructor(address[] memory traits) {
         traits_ = traits;
@@ -106,7 +144,7 @@ contract EventPass {
         uint256 length = traits_.length;
 
         for(uint i = 0; i < length;) {
-            Trait(traits_[i]).associate(account);
+            Trait(traits_[i]).linkTo(account);
 
             unchecked {
                 ++i;
@@ -114,13 +152,13 @@ contract EventPass {
         }
     }
 
-    function setupWithAdditionalChecks(address account, Trait[] calldata required) external {
+    function setupWithAdditionalChecks(address account, Review[] calldata required) external {
         setup(account);
 
         uint256 length = required.length;
 
         for(uint i = 0; i < length;) {
-                required[i].associate(account);
+                required[i].associateWith(account);
 
                 unchecked {
                     ++i;
