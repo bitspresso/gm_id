@@ -27,7 +27,9 @@ export default function Home() {
   }
   return (
     <div className="flex flex-col align-center items-center gap-8 w-full ">
-      <h2 className="text-center">Community-driven, event-focused identity</h2>
+      <h2 className="text-center text-yellow font-bold">
+        Community-driven, event-focused identity
+      </h2>
       <div className="grid grid-cols-2 w-full">
         <div className="group relative w-full h-80 flex justify-center items-center overflow-hidden">
           <Image
@@ -36,7 +38,9 @@ export default function Home() {
             alt="Beaver"
           />
           <button className="relative" onClick={() => checkConnection(create)}>
-            <p>[create]</p>
+            <p className="font-bold text-4xl bg-[rgba(0,0,0,0.2)] p-2 rounded-xl text-yellow">
+              [create]
+            </p>
           </button>
         </div>
         <div className="group relative w-full h-80 flex justify-center items-center overflow-hidden">
@@ -49,7 +53,9 @@ export default function Home() {
             className="relative"
             onClick={() => checkConnection(partecipate)}
           >
-            <p>[partecipate]</p>
+            <p className="font-bold text-4xl bg-[rgba(0,0,0,0.2)] p-2 rounded-xl text-yellow">
+              [partecipate]
+            </p>
           </button>
         </div>
       </div>
