@@ -22,7 +22,7 @@ In an era where digital presence reigns supreme, GM ID is your passport to maste
 
 ### Architecture
 
-![Drag Racing](flow.svg)
+![gm_id architecture](assets/flow.svg)
 
 
 ### Current state
