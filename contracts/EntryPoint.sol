@@ -1,10 +1,8 @@
 pragma solidity <=0.8.19;
 
-import "";
-
 contract EntryPoint {
-    event Registered(address indexed account, address indexed forEvent);
-    event Dropped(address indexed account, address indexed forEvent);
+    event Registered(address indexed account, address indexed event_);
+    event Dropped(address indexed account, address indexed event_);
 
     address immutable registry_;
     address immutable executor_;
